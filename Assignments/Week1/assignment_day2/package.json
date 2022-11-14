@@ -1,0 +1,15 @@
+{
+  "name": "assignment_day2",
+  "scripts": {
+    "start": "nodemon main.js"
+  },
+  "dependencies": {
+    "express": "4.18.2",
+    "nodemon": "^2.0.20"
+  },
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
