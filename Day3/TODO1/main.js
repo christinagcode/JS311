@@ -30,12 +30,12 @@ app.get("/todos", function(req,res){
  * return the details of a single todo item with the matching id 
  */
 
-app.get("/todos", function(req,res){
+app.get("/todos/:id", function(req,res){
 
     // this is how we get info from path params
     // this is the id i'm looking for 
     let id = req.params.id;
-
+    
     // this is where i'll store the item if I find it
     let matchingItem;
 
@@ -131,7 +131,7 @@ app.post("/todos", function(req, res){
  * return an ok message
  */
 
-app.put("todos", function(req,res){
+app.put("/todos/:id", function(req,res){
     // id comes from path
     let id = req.params.id;
     let matchingItem = db.find(function(element, index){

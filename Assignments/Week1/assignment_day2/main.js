@@ -15,7 +15,6 @@ let PORT = 4100;
 app.get("/add", function(req,res){
     let {numberOne, numberTwo} = req.query;
     let addAnswer = numberOne + "+" + numberTwo;
-   // how do specifiy second number??
    console.log(addAnswer);
     const addResult = (x, y) => {
         let sum = Number(x) + Number(y);

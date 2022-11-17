@@ -1,0 +1,19 @@
+
+GET /todos
+
+GET/todos/:id
+
+POST /todos/
+
+PUT /todos/:id
+
+DELETE /todos/:id
+
+we're using express because the result of the path can be different
+depending whats going on in the world 
+
+static resources
+
+
+class 4 serving static files
+    clone and fork or zip file 
