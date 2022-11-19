@@ -3,98 +3,63 @@ let express = require("express");
 let app = express();
 
 app.use(express.json());
+ 
+let PORT = 3458;
 
-let PORT = 3924;
+let db = [];
+let nextId = 5621;
 
-// should not be used outside of this assignment. this is just to demonstrate
-let db = []
-let nextId = 2345
 
-/**
- * Get /todos:id
- * return a summary of all the todo items in database
- */
-
+// returns summary of all the todo items in the database
 app.get("/planets", function(req,res){
     res.json(db);
 })
 
 /**
- *  GET /todos/:id
- * return details of the single planet item with matching id 
+ *  Returns the detail of a single item with the matchining id
  */
-
-// how we get the id from the path parameters
 app.get("/planets/:id", function(req,res){
-
-    // id I'm looking for    
     let id = req.params.id;
-
-    // this is where I'll store my item if I find it.
     let matchingItem;
 
-    // loop through all the indices  of the array
-    for(let i=0; i<db.length;i++){
-
-        // read the element out of the position
+    for(let i=0;i<db.length;i++){
         let entry = db[i];
-        // compare the element's id to the id i am looking for
         if(entry.id == id){
-            // if the ids match, then store/remember element in this position/iteration of the array
             matchingItem = entry;
-
-            //can't do returns because it'll exit the function
-            // so we use break to get out of the LOOP since we don't need to keep looking
             break;
         }
     }
-    
-    // its either going to undefined, empty, or hold the item that matches
     res.json(matchingItem);
 })
 
 /**
- * DELETE /planets/:id
- * Delete todo item with the matching id from database
- * return ok message
+ * Deletes the items with matching id from the database
+ * returns ok message
  */
 
 app.delete("/planets/:id", function(req,res){
-   // get the id of the item we want to delete from the path
     let id = req.params.id;
 
     for(let i=0;i<db.length;i++){
         if(id == db[i].id){
-            db.splice(i, 1);
+            db.splice(i,1);
             break;
         }
     }
     res.sendStatus(204);
 })
 
-
-
-
 /**
- * POST /planets
- * Add the item to the database
- * 
- * Return ok message
+ * add an item to the database
+ * and return an ok message
  */
 
-app.post("/planets", function(req,res){
+app.post("/todos", function(req,res){
     let payload = req.body;
-
-    // get info from request body
     let task = payload.task;
     let description = payload.description;
-
-    // get an id that we can use
     let id = nextId;
-
-    // increment the variable so we get a new id
     nextId++;
-
     let element = {
         id: id,
         task: task,
@@ -102,48 +67,37 @@ app.post("/planets", function(req,res){
         done: false
     }
 
-
-db.push(element);
-
-res.sendStatus(202); // no data return
+    db.push(element);
+    res.sendStatus(204);
 
 })
 
 /**
- * PUT /todos/:id
- * Update an item in the matching id in DB 
- * combo of get/post. we need to find it to update it specific item
- * we need to up date with the things we need to request
- * and out of the body and into the item
+ * Update an item with matcing ID in database
  */
 
 app.put("/todos/:id", function(req,res){
-    // pick up at 2:35 in lecture
-
-    // we are choosing to get the id from path but everything else 
-     // comes from the body. there can be other ways
     let id = req.params.id;
-    
-    for(let i=0;i<db.length;i++){
-        if(id == db[i].id){
-            matchingItem = db[i];
-            break;
+    let matchingItem = db.find(function(element, index){
+        if(element.id == id){
+            return true
+        } else {
+            return false;
         }
+    });
+
+    if(matchingItem){
+        matchingItem.task = req.body.task;
+        matchingItem.description = req.body.description;
+        matchingItem.done = req.body.done == true;
     }
+    res.sendStatus(204);
 })
-
-
-
 
 
 app.listen(PORT, function(){
-    console.log("Planet App started on PORT: ", PORT);
+    console.log("App is running on PORT: ", PORT);
 })
-   
-
-
-
-
 
 /**
  * copy paste info so I don't have to type it everytime
