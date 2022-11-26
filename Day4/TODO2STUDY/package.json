@@ -1,0 +1,9 @@
+{
+    "name":"todo2study",
+    "scripts":{
+        "start": "node src/main.js"
+    },
+    "dependencies":{
+        "express": "4.18.2"
+    }
+}

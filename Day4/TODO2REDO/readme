@@ -1,0 +1,8 @@
+GET /todos 
+
+GET /todos/:id
+
+POST /todos/:id
+
+DELETE /todos/:id
+

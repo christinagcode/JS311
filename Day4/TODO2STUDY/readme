@@ -1,0 +1,18 @@
+GET /todos 
+
+GET /todos/:id
+
+POST /todos/:id
+
+DELETE /todos/:id
+
+// the src folder is running on backend. Running on the express side of the world
+
+the public side is running on the front end. 
+
+Frontend.js we are going to use fetch.
+
+///////
+
+hw.
+

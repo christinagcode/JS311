@@ -1,0 +1,9 @@
+{
+    "name": "todo2redo",
+    "scripts": {
+        "start": "node src/main.js"
+    },
+    "dependences":{
+        "express": "4.18.2"
+}
+}

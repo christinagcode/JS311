@@ -1,0 +1,1 @@
+const contentData = require("../data/contents");
