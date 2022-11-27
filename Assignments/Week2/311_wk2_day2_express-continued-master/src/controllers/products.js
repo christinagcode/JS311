@@ -1,1 +1,0 @@
-const productsData = require("../data/products");
