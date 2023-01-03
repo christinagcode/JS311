@@ -1,0 +1,12 @@
+{
+    "name":"todosnew",
+    "scripts":{
+        "start":"node src/main.js"
+    },
+    "dependencies": {
+        "express": "4.18.2",
+        "mysql":"2.18.1",
+        "dotenv": "16.0.3"
+    }
+    
+}
